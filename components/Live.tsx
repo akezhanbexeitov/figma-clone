@@ -5,14 +5,18 @@ import {
   useOthers,
 } from "@/liveblocks.config";
 import LiveCursors from "./cursor/LiveCursors";
-import { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import CursorChat from "./cursor/CursorChat";
 import { CursorMode, CursorState, Reaction, ReactionEvent } from "@/types/type";
 import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
 
-const Live = () => {
+interface Props {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
+}
+
+const Live: FC<Props> = ({ canvasRef }) => {
   const others = useOthers();
   const [{ cursor }, updateMyPresence] = useMyPresence() as any;
   const [cursorState, setCursorState] = useState<CursorState>({
@@ -153,13 +157,14 @@ const Live = () => {
 
   return (
     <div
+      id='canvas'
       className='flex h-[100vh] w-full items-center justify-center text-center'
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
     >
-      <h1 className='text-2xl text-white'>Liveblock Figma Clone</h1>
+      <canvas ref={canvasRef} />
       {reaction.map((item) => (
         <FlyingReaction
           key={item.timestamp.toString()}
