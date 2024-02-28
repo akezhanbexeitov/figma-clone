@@ -6,10 +6,9 @@ import {
   useBroadcastEvent,
   useEventListener,
   useMyPresence,
-  useOthers,
 } from "@/liveblocks.config";
 import useInterval from "@/hooks/useInterval";
-import { CursorMode, CursorState, Reaction, ReactionEvent } from "@/types/type";
+import { CursorMode, CursorState, Reaction } from "@/types/type";
 import { shortcuts } from "@/constants";
 
 import { Comments } from "./comments/Comments";
@@ -31,12 +30,6 @@ type Props = {
 };
 
 const Live = ({ canvasRef, undo, redo }: Props) => {
-  /**
-   * useOthers returns the list of other users in the room.
-   *
-   * useOthers: https://liveblocks.io/docs/api-reference/liveblocks-react#useOthers
-   */
-  const others = useOthers();
 
   /**
    * useMyPresence returns the presence of the current user in the room.
@@ -44,7 +37,7 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
    *
    * useMyPresence: https://liveblocks.io/docs/api-reference/liveblocks-react#useMyPresence
    */
-  const [{ cursor }, updateMyPresence] = useMyPresence() as any;
+  const [{ cursor }, updateMyPresence] = useMyPresence();
 
   /**
    * useBroadcastEvent is used to broadcast an event to all the other users in the room.
@@ -107,7 +100,7 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
    * useEventListener: https://liveblocks.io/docs/api-reference/liveblocks-react#useEventListener
    */
   useEventListener((eventData) => {
-    const event = eventData.event as ReactionEvent;
+    const event = eventData.event;
     setReactions((reactions) =>
       reactions.concat([
         {
@@ -289,7 +282,7 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
         )}
 
         {/* Show the live cursors of other users */}
-        <LiveCursors others={others} />
+        <LiveCursors />
 
         {/* Show the comments */}
         <Comments />
