@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Things to improve
 
 1. Cursor is shifted a little on the other screen
+2. Add opacity functionality to color and stroke options
+3. In pdf export match the background of pdf to the background of canvas
