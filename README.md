@@ -40,3 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 1. Cursor is shifted a little on the other screen
 2. Add opacity functionality to color and stroke options
 3. In pdf export match the background of pdf to the background of canvas
+4. Add Auth
+5. Add comments tagging functionality
+6. Close comments when clicking outside of it
+7. Add hotkeys for different navbar logic
