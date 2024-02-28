@@ -185,7 +185,7 @@ const Live: FC<Props> = ({ canvasRef }) => {
       {cursorState.mode === CursorMode.ReactionSelector && (
         <ReactionSelector setReaction={setReactions} />
       )}
-      <LiveCursors others={others} />;
+      <LiveCursors others={others} />
     </div>
   );
 };
